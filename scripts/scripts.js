@@ -202,3 +202,5 @@ async function loadPage() {
 }
 
 loadPage();
+
+import './universal-editor-embedded.js';
