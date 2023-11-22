@@ -2,6 +2,7 @@ export default async function decorate(block) {
     const isUE = isUniversalEditorActive();
     const persistedQuery = (isUE) ? useAuthorQuery(block.textContent) : block.textContent;
     const category = await getCategory(persistedQuery);
+    console.dir(category);
     
     const root = document.createElement('div');
     root.setAttribute("class", "category-list");
@@ -14,8 +15,8 @@ export default async function decorate(block) {
     elem.setAttribute("itemfilter", "cf");
     elem.innerHTML = `
         <div class="category-item-content">
-            <h2 class="category-item-title" itemprop="title" itemtype="text">${category.title}</h2>
-            <div class="category-item-desc" itemprop="description" itemtype="richtext">${category.information}</div>
+            <h2 class="category-item-title" data-editor-itemlabel="Title" itemprop="title" itemtype="text">${category.title}</h2>
+            <div class="category-item-desc" data-editor-itemlabel="Information" itemprop="description" itemtype="richtext">${category.information}</div>
         </div>`;
     root.appendChild(elem);
     block.textContent = "";
